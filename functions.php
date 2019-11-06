@@ -1,26 +1,28 @@
 <?php
-function openConnection()
-{
-    // Try to figure out what these should be for you
-    $dbhost = "database";
-    $dbuser = "root";
-    $dbpass = "root";
-    $db = "DGynRSEipT";
 
-    // Try to understand what happens here
-    $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
+// Try to figure out what these should be for you
 
-    // Why we do this here
-    return $pdo;
-}
-$name = $_POST['username'];
+// Try to understand what happens here
+
+
+$username = $_POST['username'];
 $mail = $_POST['mail'];
-$password = $_POST['password'];
+$pw = $_POST['password'];
 $passwordval = $_POST['passwordval'];
 
 if (isset($_POST['submit'])) {
-    if (!empty($name) and !empty($mail) and !empty($password)) {
-        $good = "You have successfully created a new account!";
+
+    $dbhost = "remotemysql.com";
+    $dbuser = "DGynRSEipT";
+    $dbpass = "WezFIBGzuR";
+    $db = "DGynRSEipT";
+
+    if (!empty($username) and !empty($mail) and !empty($pw)) {
+        $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
+        $insertmbr = $pdo->prepare("INSERT INTO Student (username, email, password) VALUES( ?,?,?)");
+        $insertmbr->execute(array($username, $mail, $pw));
+
+        $good = "You have successfully created a new account!  <a href=\"connexion.php\">Me connecter</a>";
     } else {
         $error = "Missing informations! please fill all the fields.";
     }

@@ -1,5 +1,5 @@
 <?php
-include("functions.php");
+include('functions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,46 +17,81 @@ include("functions.php");
 </head>
 
 <body>
-    <h1>Sign up</h1>
     <div class="container">
-
-        <form method="post" action="index.php" name="formulaire">
-            <div class="form-group offset-4 col-4">
-                <label for="usename">Username</label>
-                <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter email">
-
+        <div class="content col-12 ">
+            <div class="col-4">
+                <form method="post" action="index.php" name="formulaire">
+                    <div class="form-group">
+                        <h1>Sign up</h1>
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Last Name</label>
+                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="usename">Username</label>
+                        <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordVal">Password validation</label>
+                        <input type="password" class="form-control" name="passwordval" id="passwordVal" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin">Linkedin</label>
+                        <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin">
+                    </div>
+                    <div class="form-group">
+                        <label for="github">Github</label>
+                        <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github">
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary offset-4">Submit</button>
+                </form>
+                <div class="">
+                    <?php
+                    if (isset($error)) {
+                        echo '<p class="error">' . $error . "</p>";
+                    } else {
+                        echo '<p class="succes">' . $good . "</p>";
+                    }
+                    ?>
+                </div>
             </div>
-            <div class="form-group offset-4 col-4">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div class="col-4">
+                <form method="post" action="index.php" name="formulaire">
+                    <div class="form-group">
+                        <h1>Sign in</h1>
+                        <label for="usename">Username</label>
+                        <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <button type="submit" name="submitin" class="btn btn-primary offset-4">Submit</button>
+                </form>
+                <div class="">
+                    <?php
+                    if (isset($error)) {
+                        echo '<p class="error">' . $error . "</p>";
+                    } else {
+                        echo '<p class="succes">' . $good . "</p>";
+                    }
+                    ?>
+                </div>
             </div>
-
-            <div class="form-group offset-4 col-4">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group offset-4 col-4">
-                <label for="passwordVal">Password validation</label>
-                <input type="password" class="form-control" name="passwordval" id="passwordVal" placeholder="Password">
-            </div>
-
-            <button type="submit" name="submit" class="btn btn-primary offset-5 col-2">Submit</button>
-        </form>
-        <div class="offset-4 col-4">
-
-            <?php
-            if (isset($error)) {
-                echo '<p class="error">' . $error . "</p>";
-            } else {
-                echo '<p class="succes">' . $good . "</p>";
-            }
-            ?>
-
         </div>
-
     </div>
 </body>
-
 
 </html>
