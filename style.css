@@ -17,3 +17,9 @@ h1 {
     display: flex;
     justify-content: space-around;
 }
+
+.contentprofil {
+    display: flex;
+
+    flex-direction: column;
+}

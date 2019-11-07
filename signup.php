@@ -1,9 +1,13 @@
 <?php
 
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
 $username = $_POST['username'];
 $mail = $_POST['mail'];
 $pw = $_POST['password'];
 $passwordval = $_POST['passwordval'];
+$linkedin = $_POST['linkedin'];
+$github = $_POST['github'];
 
 if (isset($_POST['submit'])) {
 
@@ -14,10 +18,10 @@ if (isset($_POST['submit'])) {
 
     if (!empty($username) and !empty($mail) and !empty($pw)) {
         $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
-        $insertmbr = $pdo->prepare("INSERT INTO Student (username, email, password) VALUES( ?,?,?)");
-        $insertmbr->execute(array($username, $mail, $pw));
+        $insertmbr = $pdo->prepare("INSERT INTO Student (first_name,last_name,username, email, password,linkedin , github) VALUES( ?,?,?,?,?,?,?)");
+        $insertmbr->execute(array($first_name, $last_name, $username, $mail, $pw, $linkedin, $github));
 
-        $good = "You have successfully created a new account!  <a href=\"connexion.php\">Me connecter</a>";
+        $good = "You have successfully created a new account!  <a href=\"signin.php\">Me connecter</a>";
     } else {
         $error = "Missing informations! please fill all the fields.";
     }

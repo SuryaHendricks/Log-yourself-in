@@ -45,16 +45,12 @@ if (isset($_POST['submitin'])) {
 </head>
 
 <body>
-
-
-
-
     <div class="col-4">
         <form method="post" action="signin.php" name="formulaire">
             <div class="form-group">
                 <h1>Sign in</h1>
                 <label for="usename">Username</label>
-                <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
