@@ -1,10 +1,5 @@
 <?php
 
-// Try to figure out what these should be for you
-
-// Try to understand what happens here
-
-
 $username = $_POST['username'];
 $mail = $_POST['mail'];
 $pw = $_POST['password'];
