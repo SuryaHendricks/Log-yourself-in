@@ -1,9 +1,13 @@
 <?php
 
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
 $username = $_POST['username'];
 $mail = $_POST['mail'];
 $pw = $_POST['password'];
 $passwordval = $_POST['passwordval'];
+$linkedin = $_POST['linkedin'];
+$github = $_POST['github'];
 
 if (isset($_POST['submit'])) {
 
@@ -14,10 +18,10 @@ if (isset($_POST['submit'])) {
 
     if (!empty($username) and !empty($mail) and !empty($pw)) {
         $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
-        $insertmbr = $pdo->prepare("INSERT INTO Student (username, email, password) VALUES( ?,?,?)");
-        $insertmbr->execute(array($username, $mail, $pw));
+        $insertmbr = $pdo->prepare("INSERT INTO Student (first_name,last_name,username, email, password,linkedin , github) VALUES( ?,?,?,?,?,?,?)");
+        $insertmbr->execute(array($first_name, $last_name, $username, $mail, $pw, $linkedin, $github));
 
-        $good = "You have successfully created a new account!  <a href=\"connexion.php\">Me connecter</a>";
+        $good = "You have successfully created a new account!  <a href=\"signin.php\">Me connecter</a>";
     } else {
         $error = "Missing informations! please fill all the fields.";
     }
@@ -40,59 +44,82 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-    <div class="container">
+    <div class="signup container">
+        <h1>Sign <span class="up">up</span> !</h1>
+
         <div class="content col-12 ">
-            <div class="col-4">
-                <form method="post" action="signup.php" name="formulaire">
-                    <div class="form-group">
-                        <h1>Sign up</h1>
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name">
+
+            <form method="post" action="signup.php" name="formulaire">
+                <div class="row contReg">
+                    <div class="col-4">
+                        <div class="form-group">
+
+                            <label for="firstname">First Name</label>
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="passwordVal">Password validation</label>
+                            <input type="password" class="form-control" name="passwordval" id="passwordVal" placeholder="Password">
+                        </div>
+
                     </div>
-                    <div class="form-group">
-                        <label for="firstname">Last Name</label>
-                        <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="usename">Username</label>
+                            <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedin">Linkedin</label>
+                            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="github">Github</label>
+                            <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="usename">Username</label>
-                        <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="passwordVal">Password validation</label>
-                        <input type="password" class="form-control" name="passwordval" id="passwordVal" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="linkedin">Linkedin</label>
-                        <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin">
-                    </div>
-                    <div class="form-group">
-                        <label for="github">Github</label>
-                        <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github">
-                    </div>
-                    <button type="submit" name="submit" class="btn btn-primary offset-4">Submit</button>
-                </form>
-                <div class="">
-                    <?php
-                    if (isset($error)) {
-                        echo '<p class="error">' . $error . "</p>";
-                    } else {
-                        echo '<p class="succes">' . $good . "</p>";
-                    }
-                    ?>
                 </div>
-            </div>
+
+            </form>
 
         </div>
+        <div class="but">
+            <button align="center" type="submit" name="submit" class="btn btn-primary btnreg">Register</button>
+        </div>
     </div>
+
+
+
+    <div class="">
+        <?php
+        if (isset($error)) {
+            echo '<p class="error">' . $error . "</p>";
+        } else {
+            echo '<p class="succes">' . $good . "</p>";
+        }
+        ?>
+    </div>
+
+
+
+
 </body>
 
 </html>

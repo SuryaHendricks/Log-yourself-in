@@ -1,6 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Acme|Baloo+Bhai|Righteous|Yanone+Kaffeesatz&display=swap');
+/* font-family: 'Yanone Kaffeesatz', sans-serif;
+font-family: 'Acme', sans-serif;
+font-family: 'Baloo Bhai', cursive;
+font-family: 'Righteous', cursive; */
+
+body {
+    width: 100%;
+    background-color: rgb(54, 4, 28);
+}
+
 h1 {
     text-align: center;
     margin: 40px;
+    font-family: 'Acme', sans-serif;
+    color: white;
+    font-size: 4em;
+}
+
+textarea:placeholder-shown {
+    color: black;
+}
+
+.up {
+    color: black;
+    font-size: 2em;
 }
 
 .error {
@@ -13,7 +36,53 @@ h1 {
     margin-top: 20px;
 }
 
-.content {
+.contReg {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+.contentprofil {
+    display: flex;
+    flex-direction: column;
+}
+
+.btnreg {
+    width: 20%;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.but {
+    display: flex;
+    justify-content: center;
+}
+
+label {
+    color: white;
+    font-weight: 200;
+    font-size: 1.5em;
+    font-family: 'Baloo Bhai', cursive;
+}
+
+.form-control:focus {
+    background-color: rgb(0, 0, 0);
+    border: 2px solid white;
+}
+
+.form-control {
+    background-color: rgb(0, 0, 0);
+    border: 2px solid white;
+    color: white!important;
+    font-size: 1em;
+    font-family: 'Baloo Bhai', cursive;
+}
+
+::placeholder {
+    color: white!important;
+    font-size: 1em;
+    font-family: 'Baloo Bhai', cursive;
 }
