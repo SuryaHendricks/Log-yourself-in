@@ -6,7 +6,7 @@ font-family: 'Righteous', cursive; */
 
 body {
     width: 100%;
-    background-color: rgb(54, 4, 28);
+    background-color: rgba(54, 4, 28, 0.918);
 }
 
 h1 {
@@ -15,6 +15,7 @@ h1 {
     font-family: 'Acme', sans-serif;
     color: white;
     font-size: 4em;
+    text-shadow: 7px 7px black;
 }
 
 textarea:placeholder-shown {
@@ -24,6 +25,7 @@ textarea:placeholder-shown {
 .up {
     color: black;
     font-size: 2em;
+    text-shadow: 3px 3px white;
 }
 
 .error {
@@ -82,7 +84,7 @@ label {
 }
 
 ::placeholder {
-    color: white!important;
+    color: rgba(255, 255, 255, 0.63)!important;
     font-size: 1em;
     font-family: 'Baloo Bhai', cursive;
 }

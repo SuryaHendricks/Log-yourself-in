@@ -96,13 +96,13 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                 </div>
-
+                <div class="but">
+                    <button align="center" type="submit" name="submit" class="btn btn-primary btnreg">Register</button>
+                </div>
             </form>
 
         </div>
-        <div class="but">
-            <button align="center" type="submit" name="submit" class="btn btn-primary btnreg">Register</button>
-        </div>
+
     </div>
 
 
