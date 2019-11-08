@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $dbhost = "remotemysql.com";
 $dbuser = "DGynRSEipT";
 $dbpass = "WezFIBGzuR";
@@ -35,21 +36,40 @@ if (isset($_GET['id']) and $_GET['id'] > 0) {
     <div class="profil container">
         <div class="row">
             <div class="col-12">
-                <div class="contentprofil offset-4 col-4">
-                    <h2>Profil de <?php echo $userinfo['username']; ?></h2>
-                    <p>First Name : <?= $userinfo['first_name']; ?></p>
-                    <p>Last Name : <?= $userinfo['last_name']; ?></p>
-                    <p>Username : <?php echo $userinfo['username']; ?></p>
-                    <p>Mail : <?php echo $userinfo['email']; ?></p>
-                    <p>Linkedin : <?= $userinfo['linkedin']; ?></p>
-                    <p>Github : <?= $userinfo['github']; ?></p>
+                <div class="contentprofil offset-2 col-8">
+                    <h1><?php echo $userinfo['username']; ?> 's<span class="profil"> Profil </span> : </h1>
+                    <div class="row">
+                        <div class="labeldesc col-4">
+                            <p class="label">First Name : </p>
+                            <p class="label">Last Name : </p>
+                            <p class="label">Username : </p>
+                            <p class="label">Mail : </p>
+                            <p class="label">Linkedin :</p>
+                            <p class="label">Github : </p>
+                        </div>
+                        <div class="col-6">
+                            <p class="profinfo"> <?php echo $userinfo['first_name']; ?></p>
+                            <p class="profinfo"> <?php echo $userinfo['last_name']; ?></p>
+                            <p class="profinfo"> <?php echo $userinfo['username']; ?></p>
+                            <p class="profinfo"> <?php echo $userinfo['email']; ?></p>
+                            <p class="profinfo"> <?php echo $userinfo['linkedin']; ?></p>
+                            <p class="profinfo"> <?php echo $userinfo['github']; ?></p>
+                        </div>
+                    </div>
                     <?php
-                    if (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id']) {
+                    if (isset($_SESSION['id']) and ($userinfo['id'] == $_SESSION['id'])) {
                         ?>
-                        <br />
-                        <a href="edit.php">Editer mon profil</a>
-                        <a href="disconect.php">Se déconnecter</a>
-                        <a href="delete.php">Delete your account</a>
+                        <div class="bottom col-12">
+                            <div class="row">
+                                <div class="button-content col-9">
+                                    <a class="button-profil edit" href="edit.php">Edit</a>
+                                    <a class="button-profil disconect" href="disconect.php">Disconnect</a>
+                                </div>
+                                <div class="col-3">
+                                    <a class="button-profil delete" href="delete.php">Delete</a>
+                                </div>
+                            </div>
+                        </div>
                     <?php
                     }
                     ?>
