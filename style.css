@@ -24,6 +24,7 @@ textarea:placeholder-shown {
 .up {
     color: black;
     font-size: 2em;
+    text-shadow: 2px 2px white;
 }
 
 .error {
@@ -76,13 +77,13 @@ label {
 .form-control {
     background-color: rgb(0, 0, 0);
     border: 2px solid white;
-    color: white!important;
+    color: white !important;
     font-size: 1em;
     font-family: 'Baloo Bhai', cursive;
 }
 
 ::placeholder {
-    color: white!important;
+    color: white !important;
     font-size: 1em;
     font-family: 'Baloo Bhai', cursive;
 }
