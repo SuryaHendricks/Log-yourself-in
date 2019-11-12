@@ -79,6 +79,7 @@ textarea:placeholder-shown {
 .but {
     display: flex;
     justify-content: center;
+    margin: 40px;
 }
 
 .bitchplease {
@@ -90,7 +91,6 @@ textarea:placeholder-shown {
     margin: 42px 0px 0px 10px;
     width: 121px;
     height: 41px;
-    ;
 }
 
 button {
@@ -109,15 +109,25 @@ button:hover {
 }
 
 .button-profil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black !important;
     background-color: grey !important;
     border: 3px solid black !important;
     font-family: 'Baloo Bhai', cursive;
     font-size: 1.3em !important;
     width: 120px;
-    text-align: center;
     margin-left: 20px;
 
+}
+
+.disconect {
+    margin-right: 44px;
+}
+
+.btn {
+    margin-bottom: 0px !important;
 }
 
 .button-profil:hover {
@@ -136,6 +146,7 @@ button:hover {
     margin-left: 79px;
     width: 91px;
     display: inline-block;
+    text-align: center;
 }
 
 .bottom {
@@ -215,4 +226,34 @@ label {
     background-color: black !important;
     color: grey !important;
     border: 3px solid grey !important;
+}
+
+
+.modal-content {
+    font-family: 'Baloo Bhai', cursive;
+    font-size: 1.2em;
+
+}
+
+h5 {
+    font-size: 1.4em;
+    ;
+}
+
+.close {
+    border: none !important;
+}
+
+.modal-header {
+    background-color: grey;
+
+}
+
+.modal-body {
+    background-color: rgba(128, 128, 128, 0.589);
+}
+
+.modal-footer {
+    background-color: grey;
+    ;
 }
