@@ -143,13 +143,7 @@ if (isset($_POST['submitin'])) {
                     <button align="center" type="submit" name="submit" class="btn btn-primary btnreg">Register</button>
                 </div>
             </form>
-<<<<<<< HEAD
-
         </div>
-
-=======
-        </div>
->>>>>>> d69da43435ebebcca0d181c6fde549bb11b596bb
     </div>
     <div class="">
         <?php
