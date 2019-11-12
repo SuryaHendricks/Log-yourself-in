@@ -87,7 +87,7 @@ if (isset($_SESSION['id'])) {
             <div class="col-12">
                 <div class="contentprofil offset-4 col-4">
                     <form method="POST" action="" enctype="multipart/form-data">
-                        <h2>Profil de <?php echo $userinfo['username']; ?></h2>
+                        <h2>Profil de <?php echo $user['username']; ?></h2>
                         <label>First name :</label>
                         <input type="text" name="newfirst_name" placeholder="First name" value="<?php echo $user['first_name']; ?>" />
                         <label>Last name :</label>
