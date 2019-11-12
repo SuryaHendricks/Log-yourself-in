@@ -8,6 +8,7 @@ $db = "DGynRSEipT";
 
 
 
+
 if (isset($_SESSION['id'])) {
     $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
     $requser = $pdo->prepare("SELECT * FROM Student WHERE id = ?");
@@ -64,6 +65,7 @@ if (isset($_SESSION['id'])) {
             header('Location: profil.php?id=' . $_SESSION['id']);
         } else {
             $msg = "Vos deux mdp ne correspondent pas !";
+            header('Location: edit.php?id=' . $_SESSION['id']);
         }
     }
 }
@@ -107,6 +109,7 @@ if (isset($_SESSION['id'])) {
                                 <input type="text" class="profinfo" name="newmail" placeholder="Mail" value="<?php echo $user['email']; ?>" />
                                 <input type="password" class="profinfo" name="newpw" placeholder="Password" />
                                 <input type="password" class="profinfo" name="newpw2" placeholder="Password confirmation" />
+                                <span class="error"><?php echo $msg; ?></span>
                             </div>
                         </div>
 
