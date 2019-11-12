@@ -5,6 +5,10 @@ $dbuser = "DGynRSEipT";
 $dbpass = "WezFIBGzuR";
 $db = "DGynRSEipT";
 $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
+$getid = intval($_GET['id']);
+$requser = $pdo->prepare('SELECT * FROM Student WHERE id = ?');
+$requser->execute(array($getid));
+$userinfo = $requser->fetch();
 
 if (isset($_POST['submit'])) {
 
@@ -68,7 +72,7 @@ if (isset($_POST['submitin'])) {
             $_SESSION['mail'] = $userinfo['mail'];
             header("Location: profil.php?id=" . $_SESSION['id']);
         } else {
-            $errorpassword = "Wrong password or username!";
+            $errorpassword2 = "Wrong password or username!";
         }
     }
 }
@@ -106,6 +110,11 @@ if (isset($_POST['submitin'])) {
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" name="pwconnect" id="exampleInputPassword1" placeholder="Password">
                         </div>
+                        <?php
+                        if (isset($errorpassword2)) {
+                            echo '<p class="error">' . $errorpassword2 . "</p>";
+                        }
+                        ?>
                     </div>
                     <button type="submit" name="submitin" class="asshole btn btn-primary offset-4">Sign in</button>
                 </div>
@@ -123,11 +132,11 @@ if (isset($_POST['submitin'])) {
                     <div class="col-4">
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name">
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name" value="<?php echo $_POST['first_name']; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="firstname">Last Name</label>
-                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name" value="<?php echo $_POST['last_name']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
@@ -153,7 +162,7 @@ if (isset($_POST['submitin'])) {
                     <div class="col-4">
                         <div class="form-group">
                             <label for="usename">Username</label>
-                            <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username">
+                            <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username" value="<?php echo $_POST['username']; ?>">
                         </div>
                         <div class="">
                             <?php
@@ -164,7 +173,7 @@ if (isset($_POST['submitin'])) {
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $_POST['mail']; ?>">
                         </div>
                         <div class="">
                             <?php
@@ -180,11 +189,11 @@ if (isset($_POST['submitin'])) {
                         </div>
                         <div class="form-group">
                             <label for="linkedin">Linkedin</label>
-                            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin">
+                            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin" value="<?php echo $_POST['linkedin']; ?>">
                         </div>
                         <div class="form-group">
                             <label for="github">Github</label>
-                            <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github">
+                            <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github" value="<?php echo $_POST['github']; ?>">
                         </div>
                     </div>
                 </div>
