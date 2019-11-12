@@ -1,33 +1,29 @@
-<?php
-session_start();
-
-$username = $_POST['username'];
-$pw = $_POST['password'];
-
-if (isset($_POST['submitin'])) {
-
-    $dbhost = "remotemysql.com";
-    $dbuser = "DGynRSEipT";
-    $dbpass = "WezFIBGzuR";
-    $db = "DGynRSEipT";
-
-    if (!empty($username) and !empty($pw)) {
-        $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
-        $connectmbr = $pdo->prepare("SELECT * FROM Student WHERE username = ? AND password = ?");
-        $connectmbr->execute(array($username, $pw));
-        $userexist = $connectmbr->rowCount();
-        if ($userexist == 1) {
-            $userinfo = $connectmbr->fetch();
-            $_SESSION['id'] = $userinfo['id'];
-            $_SESSION['pseudo'] = $userinfo['pseudo'];
-            $_SESSION['mail'] = $userinfo['mail'];
-            header("Location: profil.php?id=" . $_SESSION['id']);
-        } else {
-            $error = "Wrong password or username!";
+<!-- <?php
+        session_start();
+        $username = $_POST['username'];
+        $pw = $_POST['password'];
+        if (isset($_POST['submitin'])) {
+            $dbhost = "remotemysql.com";
+            $dbuser = "DGynRSEipT";
+            $dbpass = "WezFIBGzuR";
+            $db = "DGynRSEipT";
+            if (!empty($username) and !empty($pw)) {
+                $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
+                $connectmbr = $pdo->prepare("SELECT * FROM Student WHERE username = ? AND password = ?");
+                $connectmbr->execute(array($username, $pw));
+                $userexist = $connectmbr->rowCount();
+                if ($userexist == 1) {
+                    $userinfo = $connectmbr->fetch();
+                    $_SESSION['id'] = $userinfo['id'];
+                    $_SESSION['pseudo'] = $userinfo['pseudo'];
+                    $_SESSION['mail'] = $userinfo['mail'];
+                    header("Location: profil.php?id=" . $_SESSION['id']);
+                } else {
+                    $error = "Wrong password or username!";
+                }
+            }
         }
-    }
-}
-?>
+        ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,4 +67,4 @@ if (isset($_POST['submitin'])) {
 
 </body>
 
-</html>
+</html> -->
