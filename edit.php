@@ -58,7 +58,6 @@ if (isset($_SESSION['id'])) {
             }
         } else {
             $msg = "Vos deux mdp ne correspondent pas !";
-            header('Location: edit.php?id=' . $_SESSION['id']);
         }
     } else {
 
