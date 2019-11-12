@@ -6,6 +6,7 @@ $dbpass = "WezFIBGzuR";
 $db = "DGynRSEipT";
 $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
 
+
 if (isset($_SESSION['id'])) {
 
     $requser = $pdo->prepare("SELECT * FROM Student WHERE id = ?");
