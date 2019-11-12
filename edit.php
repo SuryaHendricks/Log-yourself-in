@@ -5,6 +5,9 @@ $dbuser = "DGynRSEipT";
 $dbpass = "WezFIBGzuR";
 $db = "DGynRSEipT";
 
+
+
+
 if (isset($_SESSION['id'])) {
     $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
     $requser = $pdo->prepare("SELECT * FROM Student WHERE id = ?");
@@ -85,31 +88,30 @@ if (isset($_SESSION['id'])) {
     <div class="profil container">
         <div class="row">
             <div class="col-12">
-                <div class="contentprofil offset-4 col-4">
+                <div class="contentprofil offset-2 col-8">
                     <form method="POST" action="" enctype="multipart/form-data">
-                        <h2>Profil de <?php echo $user['username']; ?></h2>
-                        <label>First name :</label>
-                        <input type="text" name="newfirst_name" placeholder="First name" value="<?php echo $user['first_name']; ?>" />
-                        <label>Last name :</label>
-                        <input type="text" name="newlast_name" placeholder="Last name" value="<?php echo $user['last_name']; ?>" />
-                        <label>Username :</label>
-                        <input type="text" name="newusername" placeholder="Username" value="<?php echo $user['username']; ?>" />
-                        <label>Mail :</label>
-                        <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['email']; ?>" />
-                        <label>Mot de passe :</label>
-                        <input type="password" name="newpw" placeholder="Password" />
-                        <label>Confirmation - mot de passe :</label>
-                        <input type="password" name="newpw2" placeholder="Confirmation du mot de passe" />
-                        <input type="submit" value="Mettre à jour mon profil !" />
-                        <?php
-                        if (isset($_SESSION['id']) and $userinfo['id'] == $_SESSION['id']) {
-                            ?>
-                            <br />
-                            <a href="edit.php">Editer mon profil</a>
-                            <a href="disconect.php">Se déconnecter</a>
-                        <?php
-                        }
-                        ?>
+                        <h1><?php echo $user['username']; ?>'s Profil</h1>
+                        <div class="row">
+                            <div class="labeldesc col-4">
+                                <label>First name :</label>
+                                <label>Last name :</label>
+                                <label>Username :</label>
+                                <label>Mail :</label>
+                                <label>Password :</label>
+                                <label>Confirmation :</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" class="profinfo" name="newfirst_name" placeholder="First name" value="<?php echo $user['first_name']; ?>" />
+                                <input type="text" class="profinfo" name="newlast_name" placeholder="Last name" value="<?php echo $user['last_name']; ?>" />
+                                <input type="text" class="profinfo" name="newusername" placeholder="Username" value="<?php echo $user['username']; ?>" />
+                                <input type="text" class="profinfo" name="newmail" placeholder="Mail" value="<?php echo $user['email']; ?>" />
+                                <input type="password" class="profinfo" name="newpw" placeholder="Password" />
+                                <input type="password" class="profinfo" name="newpw2" placeholder="Password confirmation" />
+                            </div>
+                        </div>
+
+                        <input type="submit" class="button-update" value="Update !" />
+
                     </form>
                 </div>
             </div>

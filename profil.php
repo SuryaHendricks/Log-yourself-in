@@ -66,6 +66,7 @@ if (isset($_GET['id']) and $_GET['id'] > 0) {
                                 <a class="button-profil delete" href="delete.php">Delete</a>
                             </div>
                         </div>
+
                     <?php
                     }
                     ?>
