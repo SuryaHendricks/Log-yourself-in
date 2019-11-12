@@ -40,36 +40,34 @@ if (isset($_GET['id']) and $_GET['id'] > 0) {
                     <h1><?php echo $userinfo['username']; ?> 's<span class="profil"> Profil </span> : </h1>
                     <div class="row">
                         <div class="labeldesc col-4">
-                            <p class="label">First Name : </p>
-                            <p class="label">Last Name : </p>
-                            <p class="label">Username : </p>
-                            <p class="label">Mail : </p>
-                            <p class="label">Linkedin :</p>
-                            <p class="label">Github : </p>
+                            <label class="label">First Name : </label>
+                            <label class="label">Last Name : </label>
+                            <label class="label">Username : </label>
+                            <label class="label">Mail : </label>
+                            <label class="label">Linkedin :</label>
+                            <label class="label">Github : </label>
                         </div>
                         <div class="col-6">
-                            <p class="profinfo"> <?php echo $userinfo['first_name']; ?></p>
-                            <p class="profinfo"> <?php echo $userinfo['last_name']; ?></p>
-                            <p class="profinfo"> <?php echo $userinfo['username']; ?></p>
-                            <p class="profinfo"> <?php echo $userinfo['email']; ?></p>
-                            <p class="profinfo"> <?php echo $userinfo['linkedin']; ?></p>
-                            <p class="profinfo"> <?php echo $userinfo['github']; ?></p>
+                            <input class="profinfo" value="<?php echo $userinfo['first_name']; ?>"></input>
+                            <input class="profinfo" value="<?php echo $userinfo['last_name']; ?>"></input>
+                            <input class="profinfo" value="<?php echo $userinfo['username']; ?>"></input>
+                            <input class="profinfo" value="<?php echo $userinfo['email']; ?>"></input>
+                            <input class="profinfo" value="<?php echo $userinfo['linkedin']; ?>"></input>
+                            <input class="profinfo" value="<?php echo $userinfo['github']; ?>"></input>
                         </div>
                     </div>
                     <?php
                     if (isset($_SESSION['id']) and ($userinfo['id'] == $_SESSION['id'])) {
                         ?>
                         <div class="bottom col-12">
-                            <div class="row">
-                                <div class="button-content col-9">
-                                    <a class="button-profil edit" href="edit.php">Edit</a>
-                                    <a class="button-profil disconect" href="disconect.php">Disconnect</a>
-                                </div>
-                                <div class="col-3">
-                                    <a class="button-profil delete" href="delete.php">Delete</a>
-                                </div>
+
+                            <div class="button-content ">
+                                <a class="button-profil edit" href="edit.php">Edit</a>
+                                <a class="button-profil disconect" href="disconect.php">Disconnect</a>
+                                <a class="button-profil delete" href="delete.php">Delete</a>
                             </div>
                         </div>
+
                     <?php
                     }
                     ?>

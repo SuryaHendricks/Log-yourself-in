@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $github = $_POST['github'];
 
     if (!empty($username) and !empty($mail) and !empty($pw) and !empty($passwordval)) {
-        if (preg_match('/^[a-z\d_]{5,20}$/i', $username)) {
+        if (preg_match('/^[a-z\d_]{3,20}$/i', $username)) {
             if ($pw == $passwordval) {
                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
                     $requsername = $pdo->prepare("SELECT * FROM Student WHERE username = ?");
