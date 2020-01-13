@@ -1,14 +1,26 @@
 <?php
 session_start();
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $dbhost = "remotemysql.com";
 $dbuser = "GDwG96muIP";
 $dbpass = "27HXEaCr65";
 $db = "GDwG96muIP";
+
 $pdo = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
-$getid = intval($_GET['id']);
-$requser = $pdo->prepare('SELECT * FROM Student WHERE id = ?');
-$requser->execute(array($getid));
-$userinfo = $requser->fetch();
+
+
+if(isset($_GET["id"]) && !empty($_GET["id"])) {
+    $getid = intval($_GET['id']);
+    $requser = $pdo->prepare('SELECT * FROM Student WHERE id = ?');
+    $requser->execute(array($getid));
+    $userinfo = $requser->fetch();
+}
+
+
 
 if (isset($_POST['submit'])) {
 
@@ -19,21 +31,26 @@ if (isset($_POST['submit'])) {
     $pw = sha1($_POST['password']);
     $passwordval = sha1($_POST['passwordval']);
     $linkedin = htmlspecialchars($_POST['linkedin']);
-    $github = $_POST['github'];
+    $github = htmlspecialchars($_POST['github']);
+
 
     if (!empty($username) and !empty($mail) and !empty($pw) and !empty($passwordval)) {
         if (preg_match('/^[a-z\d_]{3,20}$/i', $username)) {
             if ($pw == $passwordval) {
                 if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+
                     $requsername = $pdo->prepare("SELECT * FROM Student WHERE username = ?");
                     $requsername->execute(array($username));
                     $usernameexist = $requsername->rowCount();
-                    $reqmail = $pdo->prepare("SELECT *FROM Student WHERE email = ?");
+
+                    //TODO
+                    $reqmail = $pdo->prepare("SELECT *FROM Student WHERE mail = ?");
                     $reqmail->execute(array($mail));
                     $mailexist = $reqmail->rowCount();
+
                     if ($mailexist == 0) {
                         if ($usernameexist == 0) {
-                            $insertmbr = $pdo->prepare("INSERT INTO Student (first_name,last_name,username, email, password,linkedin , github) VALUES( ?,?,?,?,?,?,?)");
+                            $insertmbr = $pdo->prepare("INSERT INTO Student (first_name,last_name,username, mail, password,linkedin , github) VALUES( ?,?,?,?,?,?,?)");
                             $insertmbr->execute(array($first_name, $last_name, $username, $mail, $pw, $linkedin, $github));
                             $good = "You have successfully created a new account! You can now Sign In :-) ";
                         } else {
@@ -67,10 +84,12 @@ if (isset($_POST['submitin'])) {
         $userexist = $connectmbr->rowCount();
         if ($userexist == 1) {
             $userinfo = $connectmbr->fetch();
+
             $_SESSION['id'] = $userinfo['id'];
-            $_SESSION['username'] = $userinfo['usernameconnect'];
+            $_SESSION['username'] = $userinfo['username'];
             $_SESSION['mail'] = $userinfo['mail'];
             header("Location: profil.php?id=" . $_SESSION['id']);
+            exit;
         } else {
             $errorpassword2 = "Wrong password or username!";
         }
@@ -78,6 +97,7 @@ if (isset($_POST['submitin'])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,11 +114,10 @@ if (isset($_POST['submitin'])) {
 </head>
 
 <body>
-    <html lang="en">
     <div class="signinup container">
         <div class="col-12">
             <form method="post" action="signup.php" name="formulaire">
-                <div class="bitchplease row">
+                <div class="signRow row">
                     <div class="col-3">
                         <div class="form-group">
                             <label for="usernameconnect">Username</label>
@@ -116,7 +135,7 @@ if (isset($_POST['submitin'])) {
                         }
                         ?>
                     </div>
-                    <button type="submit" name="submitin" class="asshole btn btn-primary offset-4">Sign in</button>
+                    <button type="submit" name="submitin" class="submit btn btn-primary offset-4">Sign in</button>
                 </div>
             </form>
 
@@ -124,6 +143,7 @@ if (isset($_POST['submitin'])) {
 
         </div>
     </div>
+
     <div class="signup container">
         <h1>Sign <span class="up">up</span> !</h1>
         <div class="content col-12 ">
@@ -132,20 +152,15 @@ if (isset($_POST['submitin'])) {
                     <div class="col-4">
                         <div class="form-group">
                             <label for="firstname">First Name</label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name" value="<?php echo $_POST['first_name']; ?>">
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter first name" value="<?php echo isset($_POST['first_name']) ? $_POST['first_name'] : "" ; ?>">
                         </div>
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
-                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name" value="<?php echo $_POST['last_name']; ?>">
+                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter last name" value="<?php echo isset( $_POST['last_name']) ?  $_POST['last_name'] : ""; ?>">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="">
-                            <?php
-                            $username = htmlspecialchars($_POST['username']);
-                            ?>
                         </div>
                         <div class="form-group">
                             <label for="passwordVal">Password validation</label>
@@ -162,7 +177,7 @@ if (isset($_POST['submitin'])) {
                     <div class="col-4">
                         <div class="form-group">
                             <label for="usename">Username</label>
-                            <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username" value="<?php echo $_POST['username']; ?>">
+                            <input type="text" class="form-control" name="username" id="usename" aria-describedby="emailHelp" placeholder="Enter username" value="<?php echo isset($_POST['username']) ? $_POST['username'] : ""; ?>">
                         </div>
                         <div class="">
                             <?php
@@ -173,7 +188,7 @@ if (isset($_POST['submitin'])) {
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $_POST['mail']; ?>">
+                            <input type="email" class="form-control" name="mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo isset($_POST['mail']) ? $_POST['mail'] : ""; ?>">
                         </div>
                         <div class="">
                             <?php
@@ -189,11 +204,11 @@ if (isset($_POST['submitin'])) {
                         </div>
                         <div class="form-group">
                             <label for="linkedin">Linkedin</label>
-                            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin" value="<?php echo $_POST['linkedin']; ?>">
+                            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Enter your linkedin" value="<?php echo isset($_POST['linkedin']) ? $_POST['linkedin'] : ""; ?>">
                         </div>
                         <div class="form-group">
                             <label for="github">Github</label>
-                            <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github" value="<?php echo $_POST['github']; ?>">
+                            <input type="text" class="form-control" name="github" id="github" placeholder="Enter your github" value="<?php echo isset($_POST['github']) ? $_POST['github'] : ""; ?>">
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 
     $dbhost = "remotemysql.com";
     $dbuser = "DGynRSEipT";
-    $dbpass = "WezFIBGzuR";
+    $dbpass = "27HXEaCr65";
     $db = "DGynRSEipT";
 
     if (!empty($username) and !empty($mail) and !empty($pw)) {
