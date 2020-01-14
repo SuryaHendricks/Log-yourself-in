@@ -11,6 +11,13 @@ Technologies
 ----
 *PHP*, *Docker*, *MySQL*
 
+What can you do ?
+----
+* Create account
+* Update account
+* Delete account
+* Login / logout
+
 Project demo 
 ----
 
