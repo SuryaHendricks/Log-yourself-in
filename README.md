@@ -19,7 +19,8 @@ Project demo
 Screenshots
 ----
 
-
+![signup](https://user-images.githubusercontent.com/54063721/72331654-d5f97800-36b8-11ea-9c15-2bae2c750c16.png)
+![prfSurya](https://user-images.githubusercontent.com/54063721/72331663-db56c280-36b8-11ea-80ad-1e21286bd510.png)
 
 
 
